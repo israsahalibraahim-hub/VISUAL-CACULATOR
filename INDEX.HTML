@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Modern Calculator</title>
+
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .calc{
+    width:300px;
+    padding:20px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.3);
+  }
+
+  .screen{
+    width:100%;
+    height:60px;
+    font-size:28px;
+    text-align:right;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    margin-bottom:15px;
+    background: rgba(255,255,255,0.25);
+    color:#fff;
+  }
+
+  .keys{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:12px;
+  }
+
+  button{
+    height:55px;
+    font-size:18px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    color:#fff;
+    background: rgba(255,255,255,0.2);
+    transition:0.2s;
+  }
+
+  button:hover{
+    background: rgba(255,255,255,0.35);
+  }
+
+  .op{ background:#ff9f43; }
+  .eq{
+    grid-column: span 2;
+    background:#1dd1a1;
+  }
+  .ac{
+    grid-column: span 2;
+    background:#ee5253;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="calc">
+  <input type="text" id="screen" class="screen" disabled>
+
+  <div class="keys">
+    <button class="ac" onclick="clearAll()">AC</button>
+    <button class="op" onclick="add('/')">÷</button>
+
+    <button onclick="add('7')">7</button>
+    <button onclick="add('8')">8</button>
+    <button onclick="add('9')">9</button>
+    <button class="op" onclick="add('*')">×</button>
+
+    <button onclick="add('4')">4</button>
+    <button onclick="add('5')">5</button>
+    <button onclick="add('6')">6</button>
+    <button class="op" onclick="add('-')">−</button>
+
+    <button onclick="add('1')">1</button>
+    <button onclick="add('2')">2</button>
+    <button onclick="add('3')">3</button>
+    <button class="op" onclick="add('+')">+</button>
+
+    <button onclick="add('0')">0</button>
+    <button onclick="add('.')">.</button>
+    <button class="eq" onclick="result()">=</button>
+  </div>
+</div>
+
+<script>
+  const screen = document.getElementById("screen");
+
+  function add(val){
+    screen.value += val;
+  }
+
+  function clearAll(){
+    screen.value = "";
+  }
+
+  function result(){
+    try{
+      screen.value = eval(screen.value);
+    }catch{
+      screen.value = "Error";
+    }
+  }
+</script>
+
+</body>
+</html>
